@@ -9,7 +9,7 @@ Don't worry, you can disable any of these features.
 
 It will be THE app to Make Quora Great Again!
 
-[![Banner](https://i.imgur.com/vBvxBAw_d.webp?maxwidth=900&fidelity=grand)]([https://i.imgur.com/vBvxBAw_d.webp?maxwidth=900&fidelity=grand](https://github.com/nin0-dev/QWeb/releases/latest/download/QWeb.apk))
+[![Banner](https://i.imgur.com/vBvxBAw_d.webp?maxwidth=900&fidelity=grand)]](https://github.com/nin0-dev/QWeb/releases/latest/download/QWeb.apk)
 *If you are asked to allow your browser to install unknown apps, or told that this app can harm your device, accept the warnings and continue anyway.*
 ### Frequently asked questions
 **When there will be an iOS version?**
