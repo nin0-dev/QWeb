@@ -6,4 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/materialToolbar2"
+                    style="@style/Widget.AppCompat.ActionBar.Solid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/appbar_color"
+                    android:minHeight="?attr/actionBarSize"
+                    app:subtitleTextColor="#FFFFFF"
+                    app:title="Login"
+                    app:titleTextColor="#FFFFFF" />
+
+                <WebView
+                    android:id="@+id/wv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </WebView>
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

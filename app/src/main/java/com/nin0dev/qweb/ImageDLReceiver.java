@@ -1,12 +1,15 @@
 package com.nin0dev.qweb;
 
 import android.Manifest;
+import android.app.AlarmManager;
 import android.app.DownloadManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
@@ -25,13 +28,26 @@ public class ImageDLReceiver {
         mContext = c;
     }
 
-
+    @JavascriptInterface
     public void loggedOut() {
         MainActivity a = (MainActivity) mContext;
         a.startActivity(new Intent(mContext, LoginActivity.class));
         a.finishAffinity();
     }
 
+    @JavascriptInterface
+    public void loggedIn() {
+        LoginActivity a = (LoginActivity) mContext;
+        Toast.makeText(mContext, "Login successful. Relaunching app...", Toast.LENGTH_SHORT).show();
+        Intent mStartActivity = new Intent(a.getApplicationContext(), MainActivity.class);
+        int mPendingIntentId = 123456;
+        PendingIntent mPendingIntent = PendingIntent.getActivity(a.getApplicationContext(), mPendingIntentId,    mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager mgr = (AlarmManager)a.getSystemService(Context.ALARM_SERVICE);
+        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+        a.finishAffinity();
+    }
+
+    @JavascriptInterface
     public void loggedOut2() {
         SeparateActivity a = (SeparateActivity) mContext;
         a.startActivity(new Intent(mContext, LoginActivity.class));
