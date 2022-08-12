@@ -9,7 +9,7 @@ Don't worry, you can disable any of these features.
 
 It will be THE app to Make Quora Great Again!
 
-<a href="https://github.com/nin0-dev/QWeb/releases/latest/download/QWeb.apk"><img src="https://i.imgur.com/1XigA2o.png"/></a>
+<a href="https://github.com/nin0-dev/QWeb/releases/latest/download/QWeb.apk"><img src="https://i.imgur.com/vSI4Vq5.png"/></a><br/>
 *If you see "For your security, your phone currently isn't allowed to install unknown apps from this source.", click on "Settings", then "Allow from this source/Allow unknown sources".*
 ### Frequently asked questions
 **When there will be an iOS version?**
