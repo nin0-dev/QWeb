@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorsnackbarSurface">#330000</color>
+    <color name="appbar_color">#2C2C2C</color>
+    <color name="notifButtonColor">#c00100</color>
+    <color name="notifButtonFgColor">#ffffff</color>
+    <color name="snackbarText">#ffffff</color>
+</resources>
