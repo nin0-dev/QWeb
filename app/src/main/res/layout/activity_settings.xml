@@ -54,16 +54,17 @@
                         android:text="Light" />
 
                     <RadioButton
+                        android:id="@+id/followSettings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Follow system settings" />
+
+                    <RadioButton
                         android:id="@+id/dark"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Dark" />
 
-                    <RadioButton
-                        android:id="@+id/followSettings"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Follow system settings" />
                 </RadioGroup>
 
                 <TextView
@@ -92,29 +93,69 @@
                     android:text="Old profile layout" />
 
                 <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="52dp"
-                    android:text="Old/new comparison" />
-
-                <TextView
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="5dp"
                     android:text="Privacy"
                     android:textSize="16sp" />
 
-                <Switch
-                    android:id="@+id/pin_lock"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="5dp"
-                    android:text="Lock app with a PIN" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textField"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:hint="App PIN code">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/pin_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:inputType="numberPassword"
+                            android:maxLength="8" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/hide_pin"
+                        style="@style/Widget.Material3.Button.IconButton"
+                        android:layout_width="54dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="0"
+                        android:layoutDirection="inherit"
+                        android:paddingLeft="13dp"
+                        android:visibility="gone"
+                        app:icon="@drawable/baseline_visibility_off_24" />
+
+                    <Button
+                        android:id="@+id/show_pin"
+                        style="@style/Widget.Material3.Button.IconButton"
+                        android:layout_width="54dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="15dp"
+                        android:layoutDirection="inherit"
+                        android:paddingLeft="13dp"
+                        android:visibility="visible"
+                        app:icon="@drawable/baseline_remove_red_eye_24" />
+
+                </LinearLayout>
 
                 <Switch
                     android:id="@+id/fp_unlock"

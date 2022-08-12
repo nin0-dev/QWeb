@@ -3,6 +3,7 @@ package com.nin0dev.qweb;
 import android.Manifest;
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
@@ -24,6 +25,18 @@ public class ImageDLReceiver {
         mContext = c;
     }
 
+
+    public void loggedOut() {
+        MainActivity a = (MainActivity) mContext;
+        a.startActivity(new Intent(mContext, LoginActivity.class));
+        a.finishAffinity();
+    }
+
+    public void loggedOut2() {
+        SeparateActivity a = (SeparateActivity) mContext;
+        a.startActivity(new Intent(mContext, LoginActivity.class));
+        a.finishAffinity();
+    }
     @JavascriptInterface
     public void showDLButton() {
         MainActivity a = (MainActivity) mContext;

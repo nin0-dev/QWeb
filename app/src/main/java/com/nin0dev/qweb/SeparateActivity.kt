@@ -73,6 +73,18 @@ class SeparateActivity : AppCompatActivity() {
         }
         appbar.setOnMenuItemClickListener {
             when (it.getItemId()) {
+                R.id.share ->
+                {
+                    val sendIntent: Intent = Intent().apply {
+                        action = Intent.ACTION_SEND
+                        putExtra(Intent.EXTRA_TEXT, wv.url)
+                        type = "text/uri-list"
+                    }
+
+                    val shareIntent = Intent.createChooser(sendIntent, null)
+                    startActivity(shareIntent)
+                    return@setOnMenuItemClickListener true
+                }
                 else -> {
                     return@setOnMenuItemClickListener true
                 }
@@ -160,6 +172,7 @@ class SeparateActivity : AppCompatActivity() {
                         view?.goBack()
                     }
                 }
+                view?.loadUrl("javascript:try{document.getElementsByClassName(\"q-relative qu-borderRadius--small qu-bg--white qu-borderAll qu-borderWidth--regular qu-display--flex qu-p--small qu-alignItems--center\")[1].style.visibility = \"none\"; Android.loggedOut2()}catch(e){}")
                 val sp = getSharedPreferences("tweaks", Context.MODE_PRIVATE)
                 if(sp.getBoolean("adBlock", true))
                 {
@@ -194,9 +207,9 @@ class SeparateActivity : AppCompatActivity() {
                         appbar.title = "Messages"
                         var sub = wv.title
                         var st = sub?.replace(" - Quora", "")
-                        if (sub != null) {
-                            if(sub.indexOf("(") == 0) {
-                                sub = sub.removeRange(0, sub.indexOf(" ") + 1)
+                        if (st != null) {
+                            if(st.indexOf("(") == 0) {
+                                st = st.removeRange(0, st.indexOf(" ") + 1)
                             }
                         }
                         appbar.subtitle = st
@@ -206,7 +219,13 @@ class SeparateActivity : AppCompatActivity() {
                     {
                         val appbar = findViewById<MaterialToolbar>(R.id.materialToolbar3)
                         appbar.title = "Profile"
-                        var st = wv.title?.replace(" - Quora", "")
+                        var sub = wv.title
+                        var st = sub?.replace(" - Quora", "")
+                        if (st != null) {
+                            if(st.indexOf("(") == 0) {
+                                st = st.removeRange(0, st.indexOf(" ") + 1)
+                            }
+                        }
                         appbar.subtitle = st
                         view?.loadUrl("javascript:setTimeout(function(){document.getElementsByClassName('q-sticky qu-zIndex--header')[0].style.display = 'none'}, 0)")
 
