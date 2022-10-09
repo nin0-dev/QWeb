@@ -46,7 +46,7 @@ Clear the app data. *App info -> Storage -> Clear data*.
 
 **Facebook/Google login does not work!**
 
-Normal bug. I'm still trying to solve it.
+It will not work due to FB/Google restrictions on 3rd-party apps. I don't plan to solve that problem anytime soon.
 
 **Where can I report bugs, or request features?**
 
