@@ -2,12 +2,8 @@ package com.nin0dev.qweb
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import android.content.pm.ShortcutInfo
-import android.content.pm.ShortcutManager
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Build
@@ -22,9 +18,6 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.pm.ShortcutInfoCompat
-import androidx.core.content.pm.ShortcutManagerCompat
-import androidx.core.graphics.drawable.IconCompat
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebViewFeature
 import com.google.android.material.appbar.MaterialToolbar
@@ -65,6 +58,7 @@ class SeparateActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_separate)
+        WebView.setWebContentsDebuggingEnabled(true)
         val appbar = findViewById<MaterialToolbar>(R.id.materialToolbar3)
         val wv = findViewById<WebView>(R.id.wv2)
         wv.addJavascriptInterface(ImageDLReceiver(this), "Android")
@@ -168,10 +162,17 @@ class SeparateActivity : AppCompatActivity() {
 
             override fun onPageFinished(view: WebView?, url: String?) {
                 if (url != null) {
-                    if(url.indexOf("quora.com") == -1) {
+                    if (url.indexOf("quora.com") == -1) {
                         view?.goBack()
                     }
                 }
+
+                view?.evaluateJavascript("(function() { return 'this'; })();",
+                    ValueCallback<String?> { s ->
+                        Log.d("LogName", s!!) // Prints: "this"
+
+                    })
+
                 view?.loadUrl("javascript:try{document.getElementsByClassName(\"q-relative qu-borderRadius--small qu-bg--white qu-borderAll qu-borderWidth--regular qu-display--flex qu-p--small qu-alignItems--center\")[1].style.visibility = \"none\"; Android.loggedOut2()}catch(e){}")
                 val sp = getSharedPreferences("tweaks", Context.MODE_PRIVATE)
                 if(sp.getBoolean("adBlock", true))

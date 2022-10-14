@@ -18,46 +18,68 @@
         android:theme="@style/Theme.QWeb"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:icon="@mipmap/ic_launcher"
+            android:name=".ReworkedSettingsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_reworked_settings">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".LoggedOutActivity"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".LoggedInActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher_round">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".PinActivity"
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:exported="false"
             android:icon="@mipmap/ic_launcher"
-            android:exported="false">
+            android:roundIcon="@mipmap/ic_launcher_round">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:exported="false"
             android:icon="@mipmap/ic_launcher"
-            android:exported="false">
+            android:roundIcon="@mipmap/ic_launcher_round">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".SeparateActivity"
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:exported="false"
             android:icon="@mipmap/ic_launcher"
-            android:exported="false">
+            android:roundIcon="@mipmap/ic_launcher_round">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".MainActivity"
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:exported="true"
             android:icon="@mipmap/ic_launcher"
-            android:exported="true">
+            android:roundIcon="@mipmap/ic_launcher_round">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

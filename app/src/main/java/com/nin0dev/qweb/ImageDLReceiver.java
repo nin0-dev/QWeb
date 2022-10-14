@@ -6,6 +6,7 @@ import android.app.DownloadManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
@@ -31,27 +32,18 @@ public class ImageDLReceiver {
     @JavascriptInterface
     public void loggedOut() {
         MainActivity a = (MainActivity) mContext;
-        a.startActivity(new Intent(mContext, LoginActivity.class));
-        a.finishAffinity();
+        mContext.getApplicationContext().startActivity(new Intent(mContext, LoggedOutActivity.class));
     }
 
     @JavascriptInterface
     public void loggedIn() {
-        LoginActivity a = (LoginActivity) mContext;
-        Toast.makeText(mContext, "Login successful. Relaunching app...", Toast.LENGTH_SHORT).show();
-        Intent mStartActivity = new Intent(a.getApplicationContext(), MainActivity.class);
-        int mPendingIntentId = 123456;
-        PendingIntent mPendingIntent = PendingIntent.getActivity(a.getApplicationContext(), mPendingIntentId,    mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager mgr = (AlarmManager)a.getSystemService(Context.ALARM_SERVICE);
-        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
-        a.finishAffinity();
+        mContext.getApplicationContext().startActivity(new Intent(mContext, LoggedInActivity.class));
     }
 
     @JavascriptInterface
     public void loggedOut2() {
         SeparateActivity a = (SeparateActivity) mContext;
-        a.startActivity(new Intent(mContext, LoginActivity.class));
-        a.finishAffinity();
+        mContext.getApplicationContext().startActivity(new Intent(mContext, LoggedOutActivity.class));
     }
     @JavascriptInterface
     public void showDLButton() {

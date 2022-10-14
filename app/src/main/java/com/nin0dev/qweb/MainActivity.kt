@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.UiModeManager.MODE_NIGHT_YES
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
@@ -25,7 +26,12 @@ import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebSettingsCompat.FORCE_DARK_OFF
 import androidx.webkit.WebSettingsCompat.FORCE_DARK_ON
 import androidx.webkit.WebViewFeature
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -61,12 +67,46 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+    fun checkUpdates()
+    {
+        val queue = Volley.newRequestQueue(this)
+        val url = "https://raw.githubusercontent.com/nin0-dev/QWeb/master/version.txt"
+        val stringRequest = StringRequest(
+            Request.Method.GET, url,
+            { response ->
+                if(response != "1")
+                {
+                    val madb = MaterialAlertDialogBuilder(this)
+                    madb.setTitle("Update available for QWeb")
+                    madb.setPositiveButton("Update", DialogInterface.OnClickListener { dialogInterface, i ->
+                        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nin0-dev/QWeb/releases/latest/download/QWeb.apk"))
+                        Toast.makeText(this, "Accept any warnings for the install.", Toast.LENGTH_LONG).show()
+                        startActivity(browserIntent)
+                    })
+                    madb.setNegativeButton("Later", DialogInterface.OnClickListener { dialogInterface, i ->  })
+                    madb.setOnCancelListener {
+                        checkUpdates()
+                    }
+                    madb.show()
+                }
+            },
+            { })
+        stringRequest.setShouldCache(false);
+        queue.add(stringRequest)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val spLogin = getSharedPreferences("login", Context.MODE_PRIVATE)
+        if(!spLogin.getBoolean("loggedIn", false))
+        {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+
+        WebView.setWebContentsDebuggingEnabled(true)
         val spTheme = getSharedPreferences("theme", Context.MODE_PRIVATE)
         val spPrivacy = getSharedPreferences("privacy", Context.MODE_PRIVATE)
 
@@ -80,7 +120,7 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<MaterialToolbar>(R.id.materialToolbar2).setOnClickListener {
             val wv = findViewById<WebView>(R.id.wv)
-            wv.loadUrl("https://www.quora.com?prevent_redirect=1")
+            wv.loadUrl("https://quora.com?prevent_redirect=1")
         }
         if(Build.VERSION.SDK_INT >= 29)
         {
@@ -174,6 +214,12 @@ class MainActivity : AppCompatActivity() {
                     appbar.subtitle = "Home"
                     return false
                 }
+                if(url == "https://www.quora.com/?prevent_redirect=1")
+                {
+                    val appbar = findViewById<MaterialToolbar>(R.id.materialToolbar2)
+                    appbar.subtitle = "Home"
+                    return false
+                }
                 else if(url == "https://www.quora.com/settings")
                 {
                     startActivity(Intent(applicationContext, SettingsActivity::class.java))
@@ -221,7 +267,8 @@ class MainActivity : AppCompatActivity() {
                         view?.goBack()
                     }
                 }
-                view?.loadUrl("javascript:try{document.getElementsByClassName(\"q-relative qu-borderRadius--small qu-bg--white qu-borderAll qu-borderWidth--regular qu-display--flex qu-p--small qu-alignItems--center\")[1].style.visibility = \"none\"; Android.loggedOut()}catch(e){}")
+               // view?.loadUrl("javascript:try{document.getElementsByClassName(\"q-relative qu-borderRadius--small qu-bg--white qu-borderAll qu-borderWidth--regular qu-display--flex qu-p--small qu-alignItems--center\")[1].style.visibility = \"none\"; Android.loggedOut()}catch(e){}")
+               // view?.loadUrl("javascript:try{document.getElementsByClassName(\"q-relative qu-borderRadius--small qu-bg--white qu-borderAll qu-borderWidth--regular qu-display--flex qu-p--small qu-alignItems--center\")[1].style.visibility = \"none\"; Android.loggedOut()}catch(e){}")
 
                 if(url == "https://www.quora.com/")
                 {
@@ -265,8 +312,9 @@ class MainActivity : AppCompatActivity() {
                 super.onPageFinished(view, url)
             }
         }
+
         wv.webChromeClient = FileUploadClient.MyWebChromeClient(this)
-        wv.loadUrl("https://www.quora.com")
+        wv.loadUrl("https://quora.com?prevent_redirect=1")
 
         wv.settings.domStorageEnabled = true
     }

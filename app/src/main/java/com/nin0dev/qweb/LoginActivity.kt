@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        WebView.setWebContentsDebuggingEnabled(true)
 
         if(Build.VERSION.SDK_INT >= 29)
         {
@@ -77,6 +77,12 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(browserIntent)
                     return false
                 }
+                if(url == "https://www.quora.com/")
+                {
+                    finish()
+                    startActivity(Intent(applicationContext, LoggedInActivity::class.java))
+                    return false
+                }
                 else
                 {
                     return false
@@ -91,7 +97,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
         }
-        wv.loadUrl("https://www.quora.com?prevent_redirect=1")
+        wv.loadUrl("https://www.quora.com/login?prevent_redirect=1")
 
         wv.settings.domStorageEnabled = true
     }
