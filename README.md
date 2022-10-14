@@ -17,6 +17,13 @@ Read this carefully:
 - **Then, click Install.** (If you don't see the install popup after allowing unknown sources, you may need to leave the settings screen.)<br/>
 <a href="https://github.com/nin0-dev/QWeb/releases/latest/download/QWeb.apk"><img src="https://i.imgur.com/vSI4Vq5.png"/></a><br/>
 
+### Feature list
+- Ad blocking
+- Hide monetized content (unless if you're a Quora+ subscriber)
+- PIN/biometric lock
+- Design improvements
+- and more...
+
 ### Frequently asked questions
 **When there will be an iOS version?**
 
