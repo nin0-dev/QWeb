@@ -79,7 +79,7 @@ class PinActivity : AppCompatActivity() {
                 }
 
                 override fun onAuthenticationFailed() {
-                    findViewById<Switch>(R.id.fp_unlock).isChecked = false
+
                     super.onAuthenticationFailed()
                 }
             })
