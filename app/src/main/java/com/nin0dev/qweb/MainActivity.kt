@@ -192,7 +192,7 @@ class MainActivity : AppCompatActivity() {
                 if(url.indexOf("quora.com") == -1) {
                     val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     startActivity(browserIntent)
-                    return false
+                    return true
                 }
                 else
                 {
@@ -205,7 +205,6 @@ class MainActivity : AppCompatActivity() {
                 Log.d("url", url)
                 if(url == wv.url)
                 {
-                    wv.reload()
                     return true
                 }
                 if(url == "https://www.quora.com/")

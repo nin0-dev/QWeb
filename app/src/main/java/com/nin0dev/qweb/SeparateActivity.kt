@@ -117,7 +117,7 @@ class SeparateActivity : AppCompatActivity() {
                 {
                     val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     startActivity(browserIntent)
-                    return false
+                    return true
                 }
                 else
                 {
